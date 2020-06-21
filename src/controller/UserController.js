@@ -5,12 +5,20 @@ module.exports = {
 
       return res.json(results)
   },
-  async store (req , res) {
-      const { username } = req.body
+  async store (req, res, next) {
+      
 
-      await knex('users').insert({
-        username
-      })
+      try {
+        const { username } = req.body
+
+        await knex('users').insert({
+          username
+        })
+
+        res.status(201).send()
+      } catch (error) {
+        next(error)
+      }
 
       return res.send()
   }
