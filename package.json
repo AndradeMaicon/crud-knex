@@ -4,7 +4,11 @@
   "main": "src/server.js",
   "license": "MIT",
   "scripts": {
-    "dev:server": "nodemon src/server.js"
+    "dev:server": "nodemon src/server.js",
+    "make": "knex migrate:make",
+    "latest": "knex migrate:latest",
+    "seed:mk": "knex seed:make",
+    "seed:rs": "knex seed:run --specific"
   },
   "dependencies": {
     "express": "^4.17.1",
