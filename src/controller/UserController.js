@@ -1,26 +1,57 @@
 const knex = require('../database')
+
 module.exports = {
   async index (req , res) {
       const results = await knex('users')
 
       return res.json(results)
   },
+
   async store (req, res, next) {
+    try {
+      const { username } = req.body
+
+      await knex('users').insert({
+        username
+      })
+
+      res.status(201).send()
+    } catch (error) {
+      next(error)
+    }
+
+    return res.send()
+  },
+
+  async update(req, res, next) {
+    try{
+      const { username } = req.body
+      const { id } = req.params
+
+      await knex('users')
+        .update({ username })
+        .where({ id })
       
+      return res.send()
 
-      try {
-        const { username } = req.body
+    } catch (error) {
+      next(error)
+    }
+  },
 
-        await knex('users').insert({
-          username
-        })
+  async delete(req, res, next) {
+    try{
+      const { id } = req.params
 
-        res.status(201).send()
-      } catch (error) {
-        next(error)
-      }
+      await knex('users')
+        .where({ id })
+        .del()
 
       return res.send()
+
+    } catch (error) {
+      next(error)
+    }
   }
 
 }
