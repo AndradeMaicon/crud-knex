@@ -8,7 +8,8 @@
     "make": "knex migrate:make",
     "latest": "knex migrate:latest",
     "seed:mk": "knex seed:make",
-    "seed:rs": "knex seed:run --specific"
+    "seed:rs": "knex seed:run --specific",
+    "rollback": "knex migrate:rollback"
   },
   "dependencies": {
     "express": "^4.17.1",

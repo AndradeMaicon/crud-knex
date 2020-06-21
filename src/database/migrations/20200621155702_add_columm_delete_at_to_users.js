@@ -5,5 +5,5 @@ exports.up = knex => knex.schema.alterTable('users', table => {
 
 
 exports.down = knex => knex.schema.alterTable('users', table => {
-  table.dropColmun('deleted_at')
+  table.dropColumn('deleted_at')
 })
